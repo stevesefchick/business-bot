@@ -1,6 +1,7 @@
 //REALLY BAD BUSINESS TWITTER BOT
 //CREATED BY STEVE SEFCHICK
 
+//TODO - random business pics
 
 var twit = require('twit');
 var config = require('./config.js');
@@ -60,7 +61,17 @@ var getBusinessThing = function() {
         "synergy",
         "business",
         "ROI",
-        "time card"
+        "time card",
+        "low hanging fruit",
+        "deep dive",
+        "hard stop",
+        "report",
+        "bandwidth",
+        "budget",
+        "blue sky thinking",
+        "agile methodology",
+        "agile",
+        "gamification"
     ];
     
     bizthing = possiblething[randomnumber(possiblething.length)];
@@ -75,7 +86,15 @@ var getBusinessVerb = function() {
     var possibleverb= [
         "synergize",
         "circle back",
-        "delay"
+        "delay",
+        "reach out",
+        "scope it out",
+        "ping",
+        "touch base",
+        "park",
+        "drill into",
+        "take offline",
+        "re-invent"
     ];
     
     bizverb = possibleverb[randomnumber(possibleverb.length)];
@@ -118,7 +137,7 @@ var generatePost = function()
     }
     else if (corePostVersion == 2)
     {
-        corePost= getBusinessGreeting() + " team, can we " + getBusinessVerb() + " on that " + getBusinessThing() + " email you sent " + getBusinessTime() + " ago?";
+        corePost= getBusinessGreeting() + " team, can we " + getBusinessVerb() + " that " + getBusinessThing() + " email you sent " + getBusinessTime() + " ago?";
     }
     return corePost;
 }
