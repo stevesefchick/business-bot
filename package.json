@@ -2,7 +2,10 @@
   "name": "businessbot",
   "version": "1",
   "description": "business",
-  "main": "index.js",
+  "main": "bot.js",
   "author": "Steve Sefchick <stevesefchick@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "twit": "^2.2.11"
+  }
 }
