@@ -1,0 +1,8 @@
+{
+  "name": "businessbot",
+  "version": "1",
+  "description": "business",
+  "main": "index.js",
+  "author": "Steve Sefchick <stevesefchick@gmail.com>",
+  "license": "MIT"
+}
