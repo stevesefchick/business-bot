@@ -1,3 +1,7 @@
+//REALLY BAD BUSINESS TWITTER BOT
+//CREATED BY STEVE SEFCHICK
+
+
 var twit = require('twit');
 var config = require('./config.js');
 
