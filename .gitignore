@@ -12,7 +12,7 @@
 businessbotworkspace.code-workspace
 
 #config
-config.js
+.env
 
 # production
 /build
