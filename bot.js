@@ -6,7 +6,6 @@
 var twit = require('twit');
 var config = require('./config.js');
 
-
 var Twitter = new twit(config);
 
 //function returns a random number
@@ -26,7 +25,12 @@ var possiblenames= [
     "Michael",
     "Stephanie",
     "Stephen",
-    "John"
+    "John",
+    "Barb",
+    "Carla",
+    "Russ",
+    "Jim",
+    "Cathy"
 ];
 
 name = possiblenames[randomnumber(possiblenames.length)];
@@ -39,18 +43,49 @@ var getBusinessTime = function() {
     var biztime="";
     
     var possibletime= [
+        "15 to 30 seconds",
         "2 minutes",
+        "37 minutes",
         "a few minutes",
         "15 minutes",
         "an hour",
         "4 hours",
-        "a few hours"
+        "a few hours",
+        "a day",
+        "at least a day",
+        "a week",
+        "a weekend",
+        "a fiscal year"
     ];
     
     biztime = possibletime[randomnumber(possibletime.length)];
     
     return biztime;
 }
+
+
+//function that returns a random meeting
+var getBusinessMeeting = function() {
+    var meetingtime="";
+    
+    var possiblemeeting= [
+        "corporate onboarding",
+        "board meeting",
+        "daily standup",
+        "morning standup",
+        "evening standup",
+        "lessons learned meeting",
+        "sprint showcase",
+        "end of year review",
+        "vendor onsite meeting",
+        "interview"
+    ];
+    
+    meetingtime = possiblemeeting[randomnumber(possiblemeeting.length)];
+    
+    return meetingtime;
+}
+
 
 
 //function that gets a business related thing
@@ -68,10 +103,11 @@ var getBusinessThing = function() {
         "report",
         "bandwidth",
         "budget",
-        "blue sky thinking",
         "agile methodology",
         "agile",
-        "gamification"
+        "gamification",
+        "stapler",
+        "coffee"
     ];
     
     bizthing = possiblething[randomnumber(possiblething.length)];
@@ -88,7 +124,7 @@ var getBusinessVerb = function() {
         "circle back",
         "delay",
         "reach out",
-        "scope it out",
+        "scope out",
         "ping",
         "touch base",
         "park",
@@ -103,7 +139,7 @@ var getBusinessVerb = function() {
 }
 
 
-//function that gets a business related verb
+//function that gets a business related greeting
 var getBusinessGreeting = function() {
     var bizgreeting="";
     
@@ -113,7 +149,8 @@ var getBusinessGreeting = function() {
         "Greetings",
         "Good morning",
         "Good afternoon",
-        "Good evening"
+        "Good evening",
+        "Salutations"
     ];
     
     bizgreeting = possiblegreeting[randomnumber(possiblegreeting.length)];
@@ -121,15 +158,40 @@ var getBusinessGreeting = function() {
     return bizgreeting;
 }
 
+
+
+//function that gets a business exclamation
+var getBusinessExclamation = function() {
+    var bizwoah="";
+    
+    var possiblewoah= [
+        "Synergy!",
+        "Agile Methodology!",
+        "Digital Transformation!",
+        "Holy crap!",
+        "Aw, shoot!",
+        "Son of a...!",
+        "AAARGH!",
+        "Holy cow!"
+    ];
+    
+    bizwoah = possiblewoah[randomnumber(possiblewoah.length)];
+    
+    return bizwoah;
+}
+
+
+
+
 var generatePost = function()
 {
     var corePost = "";
-    var corePostVersion=randomnumber(3);
+    var corePostVersion=randomnumber(5);
 
     // Hey [name], I'm on the road but I'm going to be [time duration] late to our [thing] meeting, can you start it without me?
     if (corePostVersion == 0)
     {
-        corePost= getBusinessGreeting() + " " + getBusinessNames() + ", I'm on the road but I'm going to be " + getBusinessTime() + " late to our " + getBusinessThing() + " meeting. Can you start without me?";
+        corePost= getBusinessGreeting() + " " + getBusinessNames() + ", I'm on the road but I'm going to be " + getBusinessTime() + " late to our " +getBusinessMeeting() +". Can you start without me?";
     }
     else if (corePostVersion == 1)
     {
@@ -138,6 +200,14 @@ var generatePost = function()
     else if (corePostVersion == 2)
     {
         corePost= getBusinessGreeting() + " team, can we " + getBusinessVerb() + " that " + getBusinessThing() + " email you sent " + getBusinessTime() + " ago?";
+    }
+    else if (corePostVersion == 3)
+    {
+        corePost= getBusinessExclamation() + " I spilled coffee all over my " + getBusinessThing() + " again!";
+    }
+    else if (corePostVersion == 4)
+    {
+        corePost= "Did you see " + getBusinessNames() + " run the " + getBusinessMeeting() + "? " + getBusinessExclamation();
     }
     return corePost;
 }
@@ -148,14 +218,15 @@ var postSomeBusiness = function()
     var post = generatePost();
 
     console.log('Posting--> ' + post);
-    /*
-    // comment this for now, we know this works!
+    
+    // comment this out when testing!
     Twitter.post('statuses/update', {status: post}, function(err, data, response) {
         console.log(data)
     })
-    */
+    
 }
 
 postSomeBusiness();
-setInterval(postSomeBusiness, 300);
-//was 3000000
+setInterval(postSomeBusiness, 3000000);
+//3000000 is safe (50 minutes)
+//300 is rapid fire
