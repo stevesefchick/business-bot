@@ -10,7 +10,7 @@ var Twitter = new twit(config);
 
 const express = require('express');
 const app = express();
-const port = 5000;
+const port = 3000;
 
 app.all("/" + process.env.BOT_ENDPOINT, function (req, res) {
     /* The example below tweets out "Hello world!". */
@@ -27,7 +27,7 @@ app.all("/" + process.env.BOT_ENDPOINT, function (req, res) {
 
 app.get('/', (req, res) => res.send('Hello World!'));
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Listening on port ${port}!`));
 
 //function returns a random number
 var randomnumber = function(max) {
