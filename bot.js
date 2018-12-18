@@ -248,6 +248,6 @@ var postSomeBusiness = function()
 }
 
 postSomeBusiness();
-setInterval(postSomeBusiness, 30000000);
+setInterval(postSomeBusiness, process.env.TWEET_INTERVAL|300);
 //3000000 is safe (50 minutes)
 //300 is rapid fire
