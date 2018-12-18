@@ -8,8 +8,7 @@
     "start": "node bot.js"
   },
   "engines": {
-    "node": "8.11.4",
-    "yarn": "YARN NO LONGER USED - use npm instead."
+    "node": "8.11.4"
   },
   "dependencies": {
     "dotenv": "^6.2.0",
