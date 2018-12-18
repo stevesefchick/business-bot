@@ -9,6 +9,6 @@
   },
   "engines": {
     "node": "8.11.4",
-    "yarn":"1.9.4"
+    "yarn": "YARN NO LONGER USED - use npm instead."
   }
 }
