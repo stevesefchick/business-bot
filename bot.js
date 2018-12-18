@@ -10,7 +10,7 @@ var Twitter = new twit(config);
 
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
 app.all("/" + process.env.BOT_ENDPOINT, function (req, res) {
     /* The example below tweets out "Hello world!". */
