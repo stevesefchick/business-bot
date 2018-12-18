@@ -5,8 +5,29 @@
 
 var twit = require('twit');
 var config = require('./config.js');
-
 var Twitter = new twit(config);
+
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.all("/" + process.env.BOT_ENDPOINT, function (req, res) {
+    /* The example below tweets out "Hello world!". */
+    Twitter.post('statuses/update', { status: generatePost() }, function(err, data, response) {
+      if (err){
+        console.log('error!', err);
+        res.sendStatus(500);
+      }
+      else{
+        res.sendStatus(200);
+      }
+    });
+  });
+
+app.get('/', (req, res) => res.send('Hello World!'));
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
 //function returns a random number
 var randomnumber = function(max) {
@@ -227,6 +248,6 @@ var postSomeBusiness = function()
 }
 
 postSomeBusiness();
-setInterval(postSomeBusiness, 3000000);
+setInterval(postSomeBusiness, 30000000);
 //3000000 is safe (50 minutes)
 //300 is rapid fire

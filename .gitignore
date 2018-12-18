@@ -14,6 +14,9 @@ businessbotworkspace.code-workspace
 #config
 .env
 
+#old packaged
+package.json
+
 # production
 /build
 
