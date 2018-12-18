@@ -1,0 +1,14 @@
+{
+  "name": "businessbot",
+  "version": "1.0.0",
+  "description": "business",
+  "main": "bot.js",
+  "author": "Steve Sefchick <stevesefchick@gmail.com>",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "engines": {
+    "node": "8.11.4",
+    "yarn":"1.9.4"
+  }
+}
