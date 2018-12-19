@@ -284,9 +284,9 @@ var postSomeBusiness = function()
     console.log('Posting--> ' + post);
     
     // comment this out when testing!
-    //Twitter.post('statuses/update', {status: post}, function(err, data, response) {
-    //    console.log(data)
-    //})
+    Twitter.post('statuses/update', {status: post}, function(err, data, response) {
+        console.log(data)
+    })
     
 }
 
