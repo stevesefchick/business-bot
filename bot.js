@@ -51,7 +51,9 @@ var possiblenames= [
     "Carla",
     "Russ",
     "Jim",
-    "Cathy"
+    "Cathy",
+    "Bob",
+    "Nancy"
 ];
 
 name = possiblenames[randomnumber(possiblenames.length)];
@@ -99,7 +101,9 @@ var getBusinessMeeting = function() {
         "sprint showcase",
         "end of year review",
         "vendor onsite meeting",
-        "interview"
+        "interview",
+        "daily scrum",
+        "team touchbase"
     ];
     
     meetingtime = possiblemeeting[randomnumber(possiblemeeting.length)];
@@ -128,7 +132,8 @@ var getBusinessThing = function() {
         "agile",
         "gamification",
         "stapler",
-        "coffee"
+        "coffee",
+        "ideation"
     ];
     
     bizthing = possiblething[randomnumber(possiblething.length)];
@@ -151,7 +156,9 @@ var getBusinessVerb = function() {
         "park",
         "drill into",
         "take offline",
-        "re-invent"
+        "re-invent",
+        "ideate",
+        "innovate"
     ];
     
     bizverb = possibleverb[randomnumber(possibleverb.length)];
@@ -159,6 +166,28 @@ var getBusinessVerb = function() {
     return bizverb;
 }
 
+//function that gets a business related verb in the past tense
+var getBusinessVerbPast = function() {
+    var bizverbpast="";
+    
+    var bizverbpastpossible= [
+        "synergized",
+        "circled back",
+        "delayed",
+        "reached out",
+        "scoped out",
+        "pinged",
+        "touched base",
+        "drilled into",
+        "re-invented",
+        "ideated",
+        "innovated"
+    ];
+    
+    bizverbpast = bizverbpastpossible[randomnumber(bizverbpastpossible.length)];
+    
+    return bizverbpast;
+}
 
 //function that gets a business related greeting
 var getBusinessGreeting = function() {
@@ -207,7 +236,9 @@ var getBusinessExclamation = function() {
 var generatePost = function()
 {
     var corePost = "";
-    var corePostVersion=randomnumber(5);
+    var corePostVersion=randomnumber(7);
+    //debug
+    //corePostVersion=6;
 
     // Hey [name], I'm on the road but I'm going to be [time duration] late to our [thing] meeting, can you start it without me?
     if (corePostVersion == 0)
@@ -230,6 +261,18 @@ var generatePost = function()
     {
         corePost= "Did you see " + getBusinessNames() + " run the " + getBusinessMeeting() + "? " + getBusinessExclamation();
     }
+    else if (corePostVersion == 5)
+    {
+        corePost= "Hey " + getBusinessNames() + "? It's " + getBusinessNames() + " here, sorry I'm late to the " + getBusinessThing() + " call. Can you give me a quick recap?";
+    }
+    else if (corePostVersion == 6)
+    {
+        corePost= "TO: " + getBusinessNames() + "\n" +
+        "CC: " + getBusinessNames() + "\n" +
+        "BCC: " + getBusinessNames() + "\n" + 
+        "SUBJECT: " + getBusinessExclamation() + "\n" + 
+        "BODY: " + getBusinessNames() + " really " + getBusinessVerbPast() + " during that " + getBusinessMeeting() + ", huh?";
+    }
     return corePost;
 }
 
@@ -241,13 +284,16 @@ var postSomeBusiness = function()
     console.log('Posting--> ' + post);
     
     // comment this out when testing!
-    Twitter.post('statuses/update', {status: post}, function(err, data, response) {
-        console.log(data)
-    })
+    //Twitter.post('statuses/update', {status: post}, function(err, data, response) {
+    //    console.log(data)
+    //})
     
 }
 
 postSomeBusiness();
-setInterval(postSomeBusiness, process.env.TWEET_INTERVAL|300);
+
+
+//commenting out due to heroku scheduling
+//setInterval(postSomeBusiness, process.env.TWEET_INTERVAL|300);
 //3000000 is safe (50 minutes)
 //300 is rapid fire
