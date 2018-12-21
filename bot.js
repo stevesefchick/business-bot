@@ -1,7 +1,7 @@
-//REALLY BAD BUSINESS TWITTER BOT
-//CREATED BY STEVE SEFCHICK
-
-//TODO - random business pics
+//BUSINESS BOT DX
+//Built by Steve Sefchick - 2018
+//Tweets to @BusinessbotDX
+//built using NodeJS, configured using Heroku
 
 var twit = require('twit');
 var config = require('./config.js');
@@ -12,8 +12,14 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT;
 
+app.listen(port, () => console.log(`Listening on port ${port}!`));
+
+
+
+
+//api testing - no longer needed
+/*
 app.all("/" + process.env.BOT_ENDPOINT, function (req, res) {
-    /* The example below tweets out "Hello world!". */
     Twitter.post('statuses/update', { status: generatePost() }, function(err, data, response) {
       if (err){
         console.log('error!', err);
@@ -26,8 +32,9 @@ app.all("/" + process.env.BOT_ENDPOINT, function (req, res) {
   });
 
 app.get('/', (req, res) => res.send('Hello World!'));
+*/
 
-app.listen(port, () => console.log(`Listening on port ${port}!`));
+
 
 //function returns a random number
 var randomnumber = function(max) {
@@ -53,7 +60,8 @@ var possiblenames= [
     "Jim",
     "Cathy",
     "Bob",
-    "Nancy"
+    "Nancy",
+    "Greg"
 ];
 
 name = possiblenames[randomnumber(possiblenames.length)];
@@ -112,6 +120,26 @@ var getBusinessMeeting = function() {
 }
 
 
+//function that gets a business related question
+var getBusinessQuestion = function() {
+    var varquestion="";
+    
+    var possiblequestion= [
+        getBusinessNames() + " really " + getBusinessVerbPast() + " during that " + getBusinessMeeting() + ", huh?",
+        "Where is " + getBusinessNames() + "? He's been on break for " + getBusinessTime() + "!",
+        "Can we cancel the " + getBusinessMeeting() + "?",
+        "Is it Friday yet?"
+    ];
+    
+    varquestion = possiblequestion[randomnumber(possiblequestion.length)];
+    
+    return varquestion;
+
+}
+
+
+
+
 
 //function that gets a business related thing
 var getBusinessThing = function() {
@@ -133,7 +161,8 @@ var getBusinessThing = function() {
         "gamification",
         "stapler",
         "coffee",
-        "ideation"
+        "ideation",
+        "bottom line"
     ];
     
     bizthing = possiblething[randomnumber(possiblething.length)];
@@ -158,7 +187,8 @@ var getBusinessVerb = function() {
         "take offline",
         "re-invent",
         "ideate",
-        "innovate"
+        "innovate",
+        "crunch"
     ];
     
     bizverb = possibleverb[randomnumber(possibleverb.length)];
@@ -178,10 +208,10 @@ var getBusinessVerbPast = function() {
         "scoped out",
         "pinged",
         "touched base",
-        "drilled into",
         "re-invented",
         "ideated",
-        "innovated"
+        "innovated",
+        "crunched"
     ];
     
     bizverbpast = bizverbpastpossible[randomnumber(bizverbpastpossible.length)];
@@ -222,7 +252,8 @@ var getBusinessExclamation = function() {
         "Aw, shoot!",
         "Son of a...!",
         "AAARGH!",
-        "Holy cow!"
+        "Holy cow!",
+        "TGIF!"
     ];
     
     bizwoah = possiblewoah[randomnumber(possiblewoah.length)];
@@ -236,9 +267,9 @@ var getBusinessExclamation = function() {
 var generatePost = function()
 {
     var corePost = "";
-    var corePostVersion=randomnumber(7);
+    var corePostVersion=randomnumber(8);
     //debug
-    //corePostVersion=6;
+    //corePostVersion=7;
 
     // Hey [name], I'm on the road but I'm going to be [time duration] late to our [thing] meeting, can you start it without me?
     if (corePostVersion == 0)
@@ -271,7 +302,11 @@ var generatePost = function()
         "CC: " + getBusinessNames() + "\n" +
         "BCC: " + getBusinessNames() + "\n" + 
         "SUBJECT: " + getBusinessExclamation() + "\n" + 
-        "BODY: " + getBusinessNames() + " really " + getBusinessVerbPast() + " during that " + getBusinessMeeting() + ", huh?";
+        "BODY: " + getBusinessQuestion();
+    }
+    else if (corePostVersion == 7)
+    {
+        corePost = "Team, we missed budget this month. We need to cut back on our " + getBusinessThing() + " spending and really go for those " + getBusinessThing() + "-based sales. That's the only way to keep us " + getBusinessVerbPast() + ".";
     }
     return corePost;
 }
@@ -293,7 +328,6 @@ var postSomeBusiness = function()
 postSomeBusiness();
 
 
-//commenting out due to heroku scheduling
-//setInterval(postSomeBusiness, process.env.TWEET_INTERVAL|300);
-//3000000 is safe (50 minutes)
-//300 is rapid fire
+
+//debug - run a whole buttload
+//setInterval(postSomeBusiness, 300);
