@@ -50,7 +50,7 @@ var getBusinessQuestion = function() {
 var generatePost = function()
 {
     var corePost = "";
-    var corePostVersion=randomnumber(8);
+    var corePostVersion=randomnumber(9);
     //debug
     //corePostVersion=0;
 
@@ -90,6 +90,10 @@ var generatePost = function()
     else if (corePostVersion == 7)
     {
         corePost = "Team, we missed budget this month. We need to cut back on our " + businessthing.getBusinessThing() + " spending and really go for those " + businessthing.getBusinessThing() + "-based sales. That's the only way to keep us " + businessverb.getBusinessVerbPast() + ".";
+    }
+    else if (corePostVersion ==8)
+    {
+        corePost = "Sorry I'm late to the " + businessmeeting.getBusinessMeeting() + " again. My " + businessthing.getBusinessThing() + " was acting up.";
     }
     return corePost;
 }
