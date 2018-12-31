@@ -1,5 +1,5 @@
 //BUSINESS BOT DX
-//Built by Steve Sefchick - 2018
+//Built by Steve Sefchick - 2018 - 2019
 //Tweets to @BusinessbotDX
 //built using NodeJS, configured using Heroku
 
@@ -7,13 +7,14 @@ var twit = require('twit');
 var config = require('./config.js');
 var Twitter = new twit(config);
 
-var businessname = require('./businessname.js');
-var businesstime = require('./businesstime.js');
-var businessmeeting = require('./businessmeeting.js');
-var businessthing = require('./businessthing.js');
-var businessverb = require('./businessverb.js');
-var businessgreeting = require('./businessgreeting.js');
-var businessexclamation = require('./businessexclamation.js');
+var businessname = require('./businessphrases/businessname.js');
+var businesstime = require('./businessphrases/businesstime.js');
+var businessmeeting = require('./businessphrases/businessmeeting.js');
+var businessthing = require('./businessphrases/businessthing.js');
+var businessverb = require('./businessphrases/businessverb.js');
+var businessgreeting = require('./businessphrases/businessgreeting.js');
+var businessexclamation = require('./businessphrases/businessexclamation.js');
+var businessdepartment = require('./businessphrases/businessdepartment.js');
 
 
 const express = require('express');
@@ -52,7 +53,7 @@ var generatePost = function()
     var corePost = "";
     var corePostVersion=randomnumber(9);
     //debug
-    //corePostVersion=0;
+    //corePostVersion=9;
 
     // Hey [name], I'm on the road but I'm going to be [time duration] late to our [thing] meeting, can you start it without me?
     if (corePostVersion == 0)
@@ -94,6 +95,10 @@ var generatePost = function()
     else if (corePostVersion ==8)
     {
         corePost = "Sorry I'm late to the " + businessmeeting.getBusinessMeeting() + " again. My " + businessthing.getBusinessThing() + " was acting up.";
+    }
+    else if (corePostVersion == 9)
+    {
+        corePost = "Hello, is this " + businessname.getBusinessNames() + "? Great! This is " + businessname.getBusinessNames() + " from " + businessdepartment.getBusinessDepartment() + ", I was wondering if you got my " + businessthing.getBusinessThing() + " report from " + businesstime.getBusinessTime() + " ago?";
     }
     return corePost;
 }
