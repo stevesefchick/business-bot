@@ -39,7 +39,9 @@ module.exports = {
         "customer",
         "labor",
         "email",
-        "Slack notification"
+        "Slack notification",
+        "efficiency",
+        "pipeline"
     ];
     
     bizthing = possiblething[randomnumber(possiblething.length)];

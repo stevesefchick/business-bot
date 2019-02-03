@@ -22,7 +22,9 @@ module.exports = {
         "Holy cow!",
         "TGIF!",
         "BCC me on the email!",
-        "We have to downsize!"
+        "We have to downsize!",
+        "Blue ocean strategy!",
+        "Let me recommend a book to you!"
     ];
     
     bizwoah = possiblewoah[randomnumber(possiblewoah.length)];

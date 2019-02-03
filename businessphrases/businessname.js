@@ -33,7 +33,11 @@ module.exports = {
         "Rick",
         "Richard",
         "Mike",
-        "Dave"
+        "Dave",
+        "Mike",
+        "Beth",
+        "Becky",
+        "Don"
     ];
     
     name = possiblenames[randomnumber(possiblenames.length)];
